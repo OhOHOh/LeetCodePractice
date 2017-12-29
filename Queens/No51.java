@@ -1,4 +1,5 @@
-import javax.lang.model.element.NestingKind;
+package Queens;
+
 import java.util.ArrayList;
 import java.util.List;
 
