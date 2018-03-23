@@ -13,7 +13,12 @@ public class No60 {
 
     public String getPermutation(int n, int k) {
         int partition = factorial(n-1);
-        
+        int index = k / partition + 1;
+        int offset = k % partition;
+
+        while (n > 0) {
+
+        }
 
 
         return null;
