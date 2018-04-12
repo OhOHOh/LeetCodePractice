@@ -8,7 +8,7 @@ public class No5 {
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
 
-        System.out.println(input);
+//        System.out.println(input);
         System.out.println(longestPalindrome(input));
 
     } // main
@@ -19,28 +19,33 @@ public class No5 {
          */
         int n = s.length();
         boolean[][] pal = new boolean[n][n];    //pal[i][j] 表示s[i...j]是否是回文串
+//        for (int i = 0; i < n; i++) {
+//            pal[i][i] = true;
+//        }
         for (int i = 0; i < n; i++) {
-            pal[i][i] = true;
+            for (int j = 0; j < n; j++) {
+                pal[i][j] = i > j;
+            }
         }
         int maxLen = Integer.MIN_VALUE;
-        int start_S=0, end_S=0;
+        int rf=0, rt=0, k;  // k = 回文字串的长度-1
 
-        for (int end = 0; end < n; end++) {
-            int start = end;
-
-            while (start >= 0) {
-                if ((s.charAt(start) == s.charAt(end)) && (end-start < 2 ||pal[start+1][end-1])) {
-                    pal[start][end] = true;
-                    if (maxLen < end-start+1) {
-                        maxLen = end-start+1;
-                        start_S = start;
-                        end_S = end;
+        for (k = 1; k < n; k++) {
+            for (int i = 0; i+k < n; i++) {
+                int j = i + k;
+                if (s.charAt(i) != s.charAt(j)) {
+                    pal[i][j] = false;
+                } else {
+                    pal[i][j] = pal[i+1][j-1];
+                    if (pal[i][j] && maxLen < k+1) {
+                        rf = i;
+                        rt = j;
+                        maxLen = k + 1;
                     }
-                    start--;
                 }
-            }// while
+            }
         }
 
-        return s.substring(start_S, end_S+1);
+        return s.substring(rf, rt+1);
     }
 }
