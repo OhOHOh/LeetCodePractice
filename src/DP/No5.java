@@ -24,7 +24,7 @@ public class No5 {
 //        }
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                pal[i][j] = i > j;
+                pal[i][j] = i >= j;
             }
         }
         int maxLen = Integer.MIN_VALUE;
