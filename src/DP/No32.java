@@ -5,7 +5,7 @@ import java.util.Stack;
 public class No32 {
     public static void main(String args[]) {
         String s = ")())(";
-        System.out.println(longestValidParentheses(s));
+        System.out.println(longestValidParenthesesDP(s));
     }
     private static int longestValidParentheses(String s) {
         /**
@@ -51,7 +51,7 @@ public class No32 {
         while (start <= end) {
             if (ch[start] == ')') {
                 if (stack.empty()) {
-                    return -4;
+                    return -2;
                 }
                 stack.pop();
             } else {
@@ -84,7 +84,7 @@ public class No32 {
              } else {// ch[i] == ')'
                  if (stack.empty()) {
                      last = i + 1;
-                 } else {
+                 } else { // 起码当前成功匹配了部分
                      stack.pop();
                      if (stack.empty()) {
                          max = Math.max(max, i-last+1);
@@ -97,5 +97,48 @@ public class No32 {
 
          return max;
     }// longestValidParentheses2
-    
+
+    private static int longestValidParenthesesDP(String s) {
+        /**
+         * DP, dp[i] 表示以 ch[i] 为结尾的符合条件的最大字串的 长度
+         */
+        if (s.length() == 0) {
+            return 0;
+        }
+        char[] ch = s.toCharArray();
+        int[] dp = new int[ch.length];
+        dp[0] = 0;
+
+        for (int i = 1; i < ch.length; i++) {
+            if (ch[i] == '(') {
+                dp[i] = 0;
+                continue;
+            }
+            // ch[i] == ')'
+            if (dp[i-1] == 0) {  // ch[i-1] == '('  or just fail
+                dp[i] = dp[i-1];
+                if (ch[i-1] == '(') {
+                    dp[i] = i-2 >= 0 ? dp[i-2] + 2 : 2;
+                    if (i > dp[i]) {
+                        dp[i] += dp[i-dp[i]];
+                    }
+                }
+            } else { // dp[i-1] != 0
+                if (i-1-dp[i-1] >= 0 && ch[i-1-dp[i-1]] == '(') {
+                    dp[i] = dp[i-1] + 2;
+                    if (i > dp[i]) {
+                        dp[i] += dp[i-dp[i]];
+                    }
+                } else {
+                    dp[i] = 0;
+                }
+            }
+        }
+
+        int max = 0;
+        for (int i = 0; i < ch.length; i++) {
+            max = Math.max(max, dp[i]);
+        }
+        return max;
+    }
 }
