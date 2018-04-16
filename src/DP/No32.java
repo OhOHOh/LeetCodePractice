@@ -7,7 +7,7 @@ public class No32 {
         String s = ")())(";
         System.out.println(longestValidParentheses(s));
     }
-    public static int longestValidParentheses(String s) {
+    private static int longestValidParentheses(String s) {
         /**
          * 暴力搜索
          */
@@ -67,4 +67,35 @@ public class No32 {
             return -2;
         }
     }
+
+    private static int longestValidParentheses2(String s) {
+        /**
+         * 使用 stack 来求解, 记录上一个匹配成功的位置 last, 如果失败, 就更新 last, 在这个过程里，不断更新 max
+         *
+         * */
+         char[] ch = s.toCharArray();
+         Stack<Integer> stack = new Stack<>();
+         int max = 0, last = 0;
+         int n = ch.length;
+
+         for (int i = 0; i < n; i++) {
+             if (ch[i] == '(') {
+                 stack.push(i);
+             } else {// ch[i] == ')'
+                 if (stack.empty()) {
+                     last = i + 1;
+                 } else {
+                     stack.pop();
+                     if (stack.empty()) {
+                         max = Math.max(max, i-last+1);
+                     } else {
+                         max = Math.max(max, i-stack.peek());
+                     }
+                 }
+             }
+         }
+
+         return max;
+    }// longestValidParentheses2
+    
 }
