@@ -13,7 +13,6 @@ public class No62 {
         System.out.println(uniquePaths(1, 1));
     }
 
-
     public static int uniquePaths(int m, int n) {
         /**
          * m列 * n行, 人从 (1, 1) 开始出发
