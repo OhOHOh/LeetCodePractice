@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class TwoSum {
+public class No1 {
 	
 	public int[] twoSum(int[] nums, int target) {
 		int[] result = new int[2];
@@ -29,7 +29,7 @@ public class TwoSum {
 	}
 	
 	public static void main(String args[]) {
-		TwoSum test = new TwoSum();
+		No1 test = new No1();
 		
 		int[] nums = {3,2,4};
 		int[] result = test.twoSumBrute(nums, 6);

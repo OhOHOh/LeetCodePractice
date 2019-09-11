@@ -1,8 +1,7 @@
 import java.util.HashMap;
 
-public class LongestSubstringWithoutRepeatingCharacters_3 {
+public class No3 {
 	public int lengthOfLongestSubstring_1(String s) {
-		//只适合String类型中只含有小写字母的情况
 		int maxLen = 0;
 		int begin = 0;
 		int[] alphabet = new int[26];
@@ -48,9 +47,9 @@ public class LongestSubstringWithoutRepeatingCharacters_3 {
 	}
 	
 	public static void main(String args[]) {
-		LongestSubstringWithoutRepeatingCharacters_3 test = new LongestSubstringWithoutRepeatingCharacters_3();
+		No3 test = new No3();
 		
-		String s = "pwwkewdhklasjgobgsd";
+		String s = "abc";
 		System.out.println(test.lengthOfLongestSubstring(s));
 	}
 
