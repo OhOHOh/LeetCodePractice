@@ -1,4 +1,6 @@
-import java.util.*;
+package SlidingWindow;i
+
+mport java.util.*;
 
 public class No3 {
     public static int lengthOfLongestSubstringKDistinct(String s) {
@@ -17,7 +19,7 @@ public class No3 {
 
     public static void main(String[] args) {
         No3 test = new No3();
-        String s = "abcdabc";
-        System.out.println(test.lengthOfLongestSubstringKDistinct(s));
+        String s = "abcdef";
+        System.out.println(lengthOfLongestSubstringKDistinct(s));
     }
 }
