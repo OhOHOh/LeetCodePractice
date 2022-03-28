@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 class Solution:
     def longestPalindrome(self, s):
         if len(s) == 0:
@@ -20,6 +22,27 @@ class Solution:
             left, right = i, j
             i, j = i-1, j+1
         return (rtn,left,right)
+    
+    def longestPalindrome2(self, s):
+        '''
+        DP, dp[i][j]
+        注意遍历的顺序!
+        '''
+        if len(s) == 0:
+            return ""
+        elif len(s) == 1:
+            return s
+        dp = [[False]*len(s) for _ in range(len(s))]
+        left, right = 0, 0
+        for i in range(len(s)-1, -1, -1):
+            for j in range(i, len(s), 1):
+                if s[i] == s[j] and (j-i <= 1 or dp[i+1][j-1]):
+                    dp[i][j] = True
+                    if j-i+1 >= right-left+1:
+                        left = i
+                        right = j
+        return s[left: right+1]
+        
 
 s = Solution()
-print(s.longestPalindrome("abac"))
+print(s.longestPalindrome2("abac"))
