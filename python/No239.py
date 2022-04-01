@@ -19,6 +19,9 @@ class MyQueue1:
         return self.queue[0]
 
 class MyQueue:
+    '''
+    使用 deque 来实现一个单调栈!
+    '''
     def __init__(self):
         self.queue = deque()
     def m_push(self, num):
