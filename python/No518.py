@@ -16,3 +16,6 @@ class Solution:
             for j in range(coins[i], amount+1):
                 dp[j] += dp[j-coins[i]]
         return dp[amount]
+
+s = Solution()
+print(s.change(3, [2]))
