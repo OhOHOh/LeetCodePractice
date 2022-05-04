@@ -2,6 +2,9 @@
 
 class Solution:
     def threeSum(self, nums):
+        '''
+        双指针法
+        '''
         if len(nums) <= 2:
             return []
         rtn = []
