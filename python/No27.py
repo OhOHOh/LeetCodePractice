@@ -29,6 +29,17 @@ class Solution:
                 fast += 1
         return nums
 
+    def removeElement_2(self, nums, val):
+        slow, fast = 0, 0
+        while fast < len(nums):
+            if nums[fast] == val:
+                fast += 1
+            else:
+                nums[slow] = nums[fast]
+                slow += 1
+                fast += 1
+        return slow
+
 s = Solution()
 print(s.removeElement([0,1,2,2,3,0,4,2], 2))
 print(s.removeElement_1([0,1,2,2,3,0,4,2], 2))
